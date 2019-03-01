@@ -49,9 +49,9 @@ table:
 
 A fragment $f$ may be converted to an integer value by the following equation,
 assuming that $f_n$ is the integer-converted version of the $n$-th symbol of
-$f$.
+$f$ having $m$ many symbols.
 
-$$\sum_{j=0}^{4} 26^j \cdot f_j$$
+$$\sum_{j=0}^{m} 26^j \cdot f_j$$
 
 For example, the fragment "ABCDE" would be converted as:
 
@@ -72,7 +72,7 @@ representations:
 
 $$\left((f_1 - f_3) \cdot (- f_3 + f_1) + (f_2 - f_4) \cdot (-f_4 + f_2)\right)^\frac{1}{2}$$
 
-For example, let's consider the values indices $FM, Z$ and $QK, G$:
+For example, let's consider the file indices $FM, Z$ and $QK, G$:
 
 $$f_1 = 312 \, f_2 = 7 \, f_3 = 348\, f_4 = 6$$
 
@@ -82,6 +82,14 @@ $$\left((312 - 348) \cdot (-348 + 312) + (7 - 6) \cdot (-6 + 7)\right)^\frac{1}{
 
 You must find the file index pair with the lowest Durandal Coefficent before
 time runs out for the UESC marathon!
+
+# List of Terms
+
+* **File Index** A pair of *fragments*
+
+* **Fragment** A stream of 1 to 5 upper-case Latin letters
+
+* **Durandal Coefficient** A method for comparing two *file indicies*
 
 # Input
 
@@ -97,6 +105,11 @@ xk yk
 ```
 
 $k$ will be an integer in $2\hdots1\cdot10^7$
+
+Each line $x_n, y_n$ thereafter specifies a single file index. There will be
+$k$ many file indices specified, one per line. The input will consist of $k+1$
+lines in total. Each file index will have it's two fragments separated by
+exactly one space character.
 
 Each $x_n$ and $y_n$ will be strings containing between one and five uppercase
 latin letters. They will always match the regular expression `[A-Z]{1,5}`.
@@ -139,10 +152,10 @@ QK G
 
 ## Explanation 1
 
-The Durindal Coefficient of each index is as follows:
+The Durandal Coefficient of each index is as follows:
 
 ```
-Durindal Coeff.		idx a		idx b
+Durandal Coeff.		idx a		idx b
 36.013886210738214	[FM, Z]		[QK, G]
 36.013886210738214	[QK, G]		[FM, Z]
 313.639920928443	[FM, Z]		[J, EN]

@@ -4,6 +4,10 @@ import math
 import re
 
 k = int(sys.argv[1])
+j = int(sys.argv[2])
+m = int(sys.argv[3])
+
+seen = set()
 
 def randstr(length):
     s = ""
@@ -13,5 +17,10 @@ def randstr(length):
 
 print(k)
 for i in range(k):
-    print(randstr(random.randint(1, 5)) + " " + randstr(random.randint(1, 5)))
+    while True:
+        s = randstr(random.randint(j, m)) + " " + randstr(random.randint(j, m))
+        if s not in seen:
+            print(s)
+            seen.update(s)
+            break
 
