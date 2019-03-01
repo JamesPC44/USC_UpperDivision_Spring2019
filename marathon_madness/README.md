@@ -1,17 +1,17 @@
 # Marathon Madness
 
-An officer on the UESC Marathon in the year 2794, you have traveled to the Tau
+As an officer on the UESC Marathon in the year 2794, you have traveled to the Tau
 Ceti system with the objective to establish a new colony for human kind.
 However, disaster has struck: an alien race known as the Pfhor has attacked
-your ship, and turned one of it's AI systems, Durandal against you. To save the
+your ship, and turned one of its AI systems, Durandal, against you. To save the
 Marathon, you must find the malicious AI Core File causing Durandal to fight
 for the Pfhor. Normally, this would be easy, but Durandal has self-modified
-it's code to scramble all of the file indices! To find the Core File, you must
+its code to scramble all of the file indices! To find the Core File, you must
 reverse-engineer Durandal's encryption scheme.
 
 Every file index in Durandal's primary storage cluster has been converted into
 a pair of enciphered fragments. A pair of files may be compared by computing
-it's *Durandal Coefficient*. The file with the smallest Durandal Coefficient
+its *Durandal Coefficient*. The file with the smallest Durandal Coefficient
 contains the malicious code. Each fragment is a string of Latin symbols, $A, B,
 C\hdots X, Y, Z$.
 
@@ -49,13 +49,13 @@ table:
 
 A fragment $f$ may be converted to an integer value by the following equation,
 assuming that $f_n$ is the integer-converted version of the $n$-th symbol of
-$f$ having $m$ many symbols.
+$f$.
 
-$$\sum_{j=0}^{m} 26^j \cdot f_j$$
+$$\sum_{j=0}^{n} 26^j \cdot f_j$$
 
 For example, the fragment "ABCDE" would be converted as:
 
-$$19\cdot 26^0 + 18 \cdot 26^1 + 8 \cdot 26^2 + 15\cdot 26^3 + 20\cdot 26^4 = 9409055$$
+$$19 \cdot 26^0 + 18 \cdot 26^1 + 8 \cdot 26^2 + 15 \cdot 26^3 + 20 \cdot 26^4 = 9409055$$
 
 The fragment "XY" would be converted as:
 
@@ -63,11 +63,11 @@ $$25 \cdot 26^0 + 5 \cdot 26^1 = 155$$
 
 The fragment "G" would be converted as: 
 
-$$6\cdot 26^0 = 6$$
+$$6 \cdot 26^0 = 6$$
 
 The Durandal Coefficent of a pair of file indices can be computed as follows,
 assuming that the indices being compared are $i_a$ and $i_b$, being comprised
-of respectively fragments $f_1, f_2$ and $f_3, f_4$, as their numeric
+respectively of fragments $f_1, f_2$ and $f_3, f_4$, as their numeric
 representations:
 
 $$\left((f_1 - f_3) \cdot (- f_3 + f_1) + (f_2 - f_4) \cdot (-f_4 + f_2)\right)^\frac{1}{2}$$
