@@ -70,7 +70,7 @@ def closest_split_pair(p_x, p_y, delta, best_pairs):
             if dst == best:
                 best_pairs.add((p, q))
             if dst < best:
-                best_pair = {(p, q)}
+                best_pairs = {(p, q)}
                 best = dst
     return best_pairs, best
 
@@ -146,11 +146,11 @@ pairs, mi = closest_pair(ax, ay)  # Recursive D&C function
 
 normalized_pairs = []
 for p, q in pairs:
-    if " ".join([q[2], q[3]]) < " ".join([p[2], p[3]]):
+    if (q[2], q[3]) < (p[2], p[3]):
         p, q = q, p
     normalized_pairs.append((p, q))
 
-normalized_pairs.sort(key = lambda x: " ".join([x[0][2], x[0][3], x[1][2], x[1][3]]))
+normalized_pairs.sort(key = lambda x: (x[0][2], x[0][3], x[1][2], x[1][3]))
 for pair in normalized_pairs:
     print(" ".join([pair[0][2], pair[0][3], pair[1][2], pair[1][3]]))
 
