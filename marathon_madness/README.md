@@ -13,7 +13,7 @@ Every file index in Durandal's primary storage cluster has been converted into
 a pair of enciphered fragments. A pair of files may be compared by computing
 its *Durandal Coefficient*. The file with the smallest Durandal Coefficient
 contains the malicious code. Each fragment is a string of Latin symbols, $A, B,
-C\hdots X, Y, Z$.
+C\ldots X, Y, Z$.
 
 A single symbol may be converted to an integer value via the following encoding
 table:
@@ -61,7 +61,7 @@ The fragment "XY" would be converted as:
 
 $$25 \cdot 26^0 + 5 \cdot 26^1 = 155$$
 
-The fragment "G" would be converted as: 
+The fragment "G" would be converted as:
 
 $$6 \cdot 26^0 = 6$$
 
@@ -104,7 +104,7 @@ x3 y3
 xk yk
 ```
 
-$k$ will be an integer in $2\hdots1\cdot10^7$
+$k$ will be an integer in $2\ldots1\cdot10^7$
 
 Each line $x_n, y_n$ thereafter specifies a single file index. There will be
 $k$ many file indices specified, one per line. The input will consist of $k+1$
@@ -119,17 +119,30 @@ latin letters. They will always match the regular expression `[A-Z]{1,5}`.
 Output will be in the form
 
 ```
-x1 y1
-x2 y2
+x1 y1 x2 y2
+x3 y3 x4 y4
+...
+xm-1 ym-1 xm ym
 ```
 
-Where ($x_1, y_1$) and ($x_2, y_2$) are the two index-pairs which have the
-lowest Durandal Coefficient.
+Where every line contains a pair of indices. There may be multiple indices
+which share the same Durandal coefficient, in which case all of them need to be
+output.
 
-**NOTE**: for consistency, output must be sorted by the sum of the numeric
-values of both fragments of each index. For example, if the output indices were
-$A,B$ and $C,D$, then $A,B$ would always be output first, and $C,D$ would
-always be output second.
+**NOTE**: For consistency, file indices within each line of output should
+be sorted by their symbolic representation, alphabetically, so a pair of
+file indices $(AB,CD), (AB,CE)$ would be sorted in that order. Each pair of
+file indices should be output in an order by their alphabetic sorting.
+For example, the file indices:
+
+```
+A B C E
+A B D E
+A B D F
+H I J K
+```
+
+Would be sorted as shown.
 
 # Samples
 
@@ -146,8 +159,7 @@ XH NE
 ## Output 1
 
 ```
-FM Z
-QK G
+QK G FM Z
 ```
 
 ## Explanation 1
@@ -189,6 +201,5 @@ ZHR HJN
 ## Output 2
 
 ```
-T SK
-G XX
+G XX T SK
 ```

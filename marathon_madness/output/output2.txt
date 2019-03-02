@@ -1,2 +1,1 @@
-T SK
-G XX
+G XX T SK
