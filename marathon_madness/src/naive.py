@@ -77,7 +77,17 @@ for p1 in points:
             best = d
             bestpts = [pair]
 
-for pair in sorted(bestpts, reverse=False):
-    #  sys.stderr.write(str(pair) + " " + str(dist(*pair)))
-    #  sys.stderr.write("\n")
-    print("{} {} {} {}".format(pair[0][2], pair[0][3], pair[1][2], pair[1][3]))
+normalized_pairs = []
+for p, q in bestpts:
+    if (q[2], q[3]) < (p[2], p[3]):
+        p, q = q, p
+    normalized_pairs.append((p, q))
+
+normalized_pairs.sort(key = lambda x: (x[0][2], x[0][3], x[1][2], x[1][3]))
+for pair in normalized_pairs:
+    print(" ".join([pair[0][2], pair[0][3], pair[1][2], pair[1][3]]))
+
+#  for pair in sorted(bestpts, reverse=False):
+#      #  sys.stderr.write(str(pair) + " " + str(dist(*pair)))
+#      #  sys.stderr.write("\n")
+#      print("{} {} {} {}".format(pair[0][2], pair[0][3], pair[1][2], pair[1][3]))

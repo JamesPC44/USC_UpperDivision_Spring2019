@@ -16,11 +16,10 @@ def randstr(length):
     return s
 
 print(k)
-for i in range(k):
-    while True:
-        s = randstr(random.randint(j, m)) + " " + randstr(random.randint(j, m))
-        if s not in seen:
-            print(s)
-            seen.update(s)
-            break
-
+count = 0
+while count < k:
+    s = randstr(random.randint(j, m)) + " " + randstr(random.randint(j, m))
+    if s not in seen:
+        print(s)
+        seen.add(s)
+        count += 1
