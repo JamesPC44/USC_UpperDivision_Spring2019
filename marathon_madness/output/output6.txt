@@ -2,6 +2,5 @@ D C R C
 FN R FN S
 FN R XT R
 R C R Z
-R C R Z
 R U S U
 Z L Z M
