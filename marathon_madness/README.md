@@ -159,7 +159,7 @@ XH NE
 ## Output 1
 
 ```
-FM Z QK G
+QK G FM Z
 ```
 
 ## Explanation 1
@@ -201,5 +201,5 @@ ZHR HJN
 ## Output 2
 
 ```
-T SK G XX
+G XX T SK
 ```
