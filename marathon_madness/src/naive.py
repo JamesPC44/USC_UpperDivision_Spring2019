@@ -53,7 +53,13 @@ def dist(p1, p2):
     return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
 def sort_internal(p1, p2):
-    return sorted([p1, p2], reverse=True)
+    if (p1[0] > p2[0]):
+        p1, p2 = p2, p1
+    elif p1[0] == p2[0]:
+        if (p1[1] > p2[1]):
+            p1, p2 = p2, p1
+
+    return p1, p2
 
 best = 999999999999999
 bestpts = []
@@ -62,6 +68,7 @@ for p1 in points:
         if p1 == p2:
             continue
         d = dist(p1, p2)
+        #  print(p1, p2, d)
         pair = sort_internal(p1, p2)
         if d == best:
             if pair not in bestpts:
@@ -70,7 +77,7 @@ for p1 in points:
             best = d
             bestpts = [pair]
 
-for pair in sorted(bestpts, reverse=True):
+for pair in sorted(bestpts, reverse=False):
     #  sys.stderr.write(str(pair) + " " + str(dist(*pair)))
     #  sys.stderr.write("\n")
     print("{} {} {} {}".format(pair[0][2], pair[0][3], pair[1][2], pair[1][3]))
