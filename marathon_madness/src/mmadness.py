@@ -144,14 +144,15 @@ ax = sorted(points, key=lambda x: x[0])  # Presorting x-wise
 ay = sorted(points, key=lambda x: x[1])  # Presorting y-wise
 pairs, mi = closest_pair(ax, ay)  # Recursive D&C function
 
-normalized_pairs = []
+normalized_pairs = set()
 for p, q in pairs:
     if (q[2], q[3]) < (p[2], p[3]):
         p, q = q, p
-    normalized_pairs.append((p, q))
+    normalized_pairs.add((p, q))
 
-normalized_pairs.sort(key = lambda x: (x[0][2], x[0][3], x[1][2], x[1][3]))
-for pair in normalized_pairs:
+normalized_pairs_list = list(normalized_pairs)
+normalized_pairs_list.sort(key = lambda x: (x[0][2], x[0][3], x[1][2], x[1][3]))
+for pair in normalized_pairs_list:
     print(" ".join([pair[0][2], pair[0][3], pair[1][2], pair[1][3]]))
 
 # p1, p2 = sorted([p1, p2], key=lambda x: x[0] + x[1])
