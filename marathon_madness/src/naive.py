@@ -69,10 +69,11 @@ for p1 in points:
             continue
         d = dist(p1, p2)
         #  print(p1, p2, d)
-        pair = sort_internal(p1, p2)
+        pair = [p1, p2]
         if d == best:
             if pair not in bestpts:
-                bestpts.append(pair)
+                if [p2, p1] not in bestpts:
+                    bestpts.append(pair)
         elif d < best:
             best = d
             bestpts = [pair]
