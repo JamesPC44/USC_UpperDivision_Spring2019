@@ -52,14 +52,14 @@ def main():
         second_island = int(fields[2])
 
         if line_type == "B":
-            print("Building {} {}".format(first_island, second_island))
+            #print("Building {} {}".format(first_island, second_island))
             dsforrest.merge(first_island, second_island)
         elif line_type == "Q":
-            print("Querying {} {}".format(first_island, second_island))
+            #print("Querying {} {}".format(first_island, second_island))
             if dsforrest.find(first_island) == dsforrest.find(second_island):
-                print("Result: y")
+                print("y")
             else:
-                print("Result: n")
+                print("n")
         else:
             print("Error: Unknown command type")
 

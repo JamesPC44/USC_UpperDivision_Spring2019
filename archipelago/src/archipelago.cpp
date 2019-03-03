@@ -99,10 +99,10 @@ int main() {
         sline.get(line_type);
         sline >> arg1 >> arg2;
         if (line_type == 'B') {
-            cout << "Building ";
+            //cout << "Building ";
             sets.merge(arg1, arg2);
         } else if (line_type == 'Q') {
-            cout << "Querying ";
+            //cout << "Querying ";
             if (sets.find(arg1) == sets.find(arg2))
                 q_result = 1;
             else
@@ -110,9 +110,10 @@ int main() {
         } else {
             cout << "Unknown instruction ";
         }
-        cout << arg1 << " " << arg2 << endl;
+        //cout << arg1 << " " << arg2 << endl;
         if (q_result != -1)
-            cout << "Result: " << ((q_result == 1) ? "y" : "n") << endl;
+            //cout << "Result: " << ((q_result == 1) ? "y" : "n") << endl;
+            cout << ((q_result == 1) ? "y" : "n") << endl;
     }
 
     return 0;

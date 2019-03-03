@@ -9,7 +9,10 @@ def generate_case(num_islands, num_lines, rng):
 
     bridges = set()
     for i in range(num_lines):        
+        #print("line_number={}".format(i))
+        building_bridge = False
         if rng.random() < 0.5: # Build a bridge
+            building_bridge = True
             while True:
                 first = rng.randrange(0, num_islands)
                 second = rng.randrange(0, num_islands)
@@ -18,14 +21,15 @@ def generate_case(num_islands, num_lines, rng):
                 if second < first:
                     first, second = second, first
                 if (first, second) in bridges:
-                    continue
+                    building_bridge = False
                 break
-            bridges.add((first, second))
-            if rng.random() < 0.5: # Randomize order
-                out_string += "B {} {}\n".format(first, second)
-            else:
-                out_string += "B {} {}\n".format(second, first)
-        else: # Make a query
+            if building_bridge:
+                bridges.add((first, second))
+                if rng.random() < 0.5: # Randomize order
+                    out_string += "B {} {}\n".format(first, second)
+                else:
+                    out_string += "B {} {}\n".format(second, first)
+        if not building_bridge: # Make a query
             while True:
                 first = rng.randrange(0, num_islands)
                 second = rng.randrange(0, num_islands)
@@ -43,7 +47,7 @@ def main():
     parser.add_argument("sol_file", help="Name of the solution file.")
     parser.add_argument("num_islands", type=int, help="Number of islands in the problem.")
     parser.add_argument("num_lines", type=int, help="Number of builds/queries")
-    parser.add_argument("seed", type=int, help="Number of builds/queries")
+    parser.add_argument("seed", type=int, help="Random number generator seed")
     args = parser.parse_args()
 
     rng = random.Random(args.seed)
@@ -53,6 +57,7 @@ def main():
         case_file.write(out_string)
 
     # Generate the solution file using the cpp solution
+    #print("Finding solution...")
     with open(args.case_file, "r") as case_file, \
          open(args.sol_file, "w") as sol_file, \
          Popen("./archipelago", 
